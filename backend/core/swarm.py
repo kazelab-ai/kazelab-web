@@ -95,7 +95,7 @@ class SwarmEngine:
             tool_invoked="claude-3-5-sonnet::code_synthesis",
             status=StepStatus.SUCCESS,
             duration_ms=round((time.perf_counter() - t2) * 1000, 2),
-            output_summary="Generated 380 lines of strictly-typed, RAII-safe production code with zero stubs.",
+            output_summary="Generated modular implementation conforming to RAII and type safety invariants.",
             tokens_used=2450,
             cached_tokens=42500
         )
@@ -140,7 +140,7 @@ class SwarmEngine:
             f"// Target: {req.repository_url}\n"
             f"// Language: {req.target_language}\n"
             "// Model: Anthropic Claude 3.5 Sonnet (claude-3-5-sonnet-20241022)\n"
-            "// Policy: Zero-Defect Formal Verification & RAII Conformance\n"
+            "// Verification: Static Analysis & RAII Conformance\n"
             "// =====================================================================\n\n"
             "use std::sync::Arc;\n"
             "use tokio::sync::mpsc;\n\n"

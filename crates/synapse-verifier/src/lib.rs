@@ -74,7 +74,7 @@ impl SelfHealingLoop {
                     line: 42,
                     column: 8,
                     level: "error".into(),
-                    message: "Raw pointer dereference violates zero-defect policy".into(),
+                    message: "Raw pointer dereference violates memory safety invariants".into(),
                     suggested_patch: Some("Replace raw pointer with Box<T> or Arc<T>".into()),
                 }],
                 memory_leak_detected: true,
