@@ -1,4 +1,5 @@
-//! Semantic AST Graph, Dependency DAG, and Symbol Mesh Extractor.
+pub mod parser;
+pub mod graph;
 
 use std::collections::{HashMap, HashSet};
 use serde::{Deserialize, Serialize};

@@ -4,6 +4,8 @@
 //! - First-Principles reasoning state machines.
 //! - Token yield telemetry tracking and prompt cache TTL managers.
 
+pub mod ring;
+
 use std::sync::Arc;
 use tokio::sync::{mpsc, Mutex, RwLock};
 use serde::{Deserialize, Serialize};

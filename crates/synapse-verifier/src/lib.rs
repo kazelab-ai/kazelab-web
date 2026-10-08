@@ -1,4 +1,5 @@
-//! Deterministic Compiler Test Harness, Memory Safety Prover, and Self-Healing Patch Engine.
+pub mod diagnostics;
+pub mod prover;
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
