@@ -1,4 +1,4 @@
-//! Control Flow Graph (CFG) generation and basic block extraction.
+pub mod dfa;
 
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};

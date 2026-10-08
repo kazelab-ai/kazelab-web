@@ -4,6 +4,7 @@ pub mod harness;
 pub mod repair;
 pub mod symbolic;
 pub mod cve;
+pub mod smt;
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;

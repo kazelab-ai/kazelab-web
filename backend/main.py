@@ -6,6 +6,7 @@ Native Model Context Protocol (MCP) & Anthropic Claude 3.5 Sonnet Integration
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from middleware.rate_limiter import RateLimiterMiddleware
 from core.config import settings
 from api.routes import router
 from api.v2.routes import router_v2
@@ -37,6 +38,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+app.add_middleware(RateLimiterMiddleware, max_requests_per_minute=240)
 
 # Mount modular router
 app.include_router(router)

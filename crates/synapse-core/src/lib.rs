@@ -10,6 +10,7 @@ pub mod telemetry;
 pub mod cache;
 pub mod concurrency;
 pub mod router;
+pub mod shm;
 
 use std::sync::Arc;
 use tokio::sync::{mpsc, Mutex, RwLock};
