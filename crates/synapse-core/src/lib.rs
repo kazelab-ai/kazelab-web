@@ -14,6 +14,8 @@ pub mod shm;
 pub mod raft;
 pub mod kv_paged;
 pub mod pddl;
+pub mod linear_types;
+pub mod simd;
 
 use std::sync::Arc;
 use tokio::sync::{mpsc, Mutex, RwLock};

@@ -6,6 +6,7 @@ pub mod visitor;
 pub mod diff;
 pub mod interproc;
 pub mod cpg;
+pub mod ssa;
 
 use std::collections::{HashMap, HashSet};
 use serde::{Deserialize, Serialize};
