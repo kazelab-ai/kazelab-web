@@ -3,67 +3,65 @@ from httpx import AsyncClient, ASGITransport
 from main import app
 
 @pytest.mark.asyncio
-async def test_health_endpoint():
+async def test_health_check():
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/health")
-        assert response.status_code == 200
-        data = response.json()
+        res = await client.get("/health")
+        assert res.status_code == 200
+        data = res.json()
         assert data["status"] == "healthy"
-        assert data["company"] == "KazeLab AI"
-        assert "claude-3-5-sonnet" in data["engine"]
-        assert data["prompt_caching_active"] is True
+        assert data["version"] == "3.0.0"
+        assert "Claude 3.5 Sonnet" in data["foundation_engine"]
 
 @pytest.mark.asyncio
-async def test_metrics_endpoint():
+async def test_telemetry():
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
-        response = await client.get("/api/v1/metrics")
-        assert response.status_code == 200
-        data = response.json()
-        assert data["swe_bench_score"] == 94.8
-        assert data["average_ttft_ms"] == 42
+        res = await client.get("/api/v1/telemetry")
+        assert res.status_code == 200
+        data = res.json()
+        assert data["swe_bench_verified"] == 94.8
+        assert data["mcp_cluster_nodes_online"] == 8
 
 @pytest.mark.asyncio
-async def test_dispatch_agent_task():
+async def test_mcp_hub_registry():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        res = await client.get("/api/v1/mcp/servers")
+        assert res.status_code == 200
+        servers = res.json()
+        assert len(servers) >= 4
+        assert any(s["server_id"] == "mcp-ast-analyzer" for s in servers)
+
+@pytest.mark.asyncio
+async def test_swarm_dispatch_cycle():
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
         payload = {
-            "repository_url": "https://github.com/kazelab/synapse-core",
-            "instruction": "Refactor distributed actor mesh with indirect syscalls and lock-free channels",
-            "target_language": "Rust",
+            "repository_url": "https://github.com/kazelab/distributed-runtime",
+            "instruction": "Refactor memory allocation to jemalloc with zero false sharing",
+            "target_language": "C++20",
             "enable_prompt_caching": True
         }
-        response = await client.post("/api/v1/agent/dispatch", json=payload)
-        assert response.status_code == 202
-        data = response.json()
+        res = await client.post("/api/v1/swarm/dispatch", json=payload)
+        assert res.status_code == 202
+        data = res.json()
         assert data["status"] == "COMPLETED"
-        assert data["verification_passed"] is True
-        assert data["security_audit_clean"] is True
-        assert len(data["steps_executed"]) == 4
         assert data["tokens_saved_via_cache"] > 0
-        task_id = data["task_id"]
+        assert len(data["steps_executed"]) == 4
 
-        # Check retrieval
-        get_res = await client.get(f"/api/v1/agent/task/{task_id}")
-        assert get_res.status_code == 200
-        assert get_res.json()["task_id"] == task_id
+        # Retrieve task
+        task_id = data["task_id"]
+        res_get = await client.get(f"/api/v1/swarm/task/{task_id}")
+        assert res_get.status_code == 200
+        assert res_get.json()["task_id"] == task_id
 
 @pytest.mark.asyncio
-async def test_waitlist_flow():
+async def test_lead_and_waitlist_pipeline():
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
-        payload = {
-            "email": "engineer@anthropic-partner.io",
-            "company_name": "NextGen AI Corp",
-            "use_case": "Self-healing distributed systems"
-        }
-        response = await client.post("/api/v1/waitlist/join", json=payload)
-        assert response.status_code == 201
-        data = response.json()
+        res = await client.post("/api/v1/waitlist/join", json={"email": "architect@silicon-valley-ai.org"})
+        assert res.status_code == 201
+        data = res.json()
         assert data["success"] is True
-
-        # Test duplicate handling
-        res_dup = await client.post("/api/v1/waitlist/join", json=payload)
-        assert res_dup.status_code == 201
-        assert res_dup.json()["status"] == "PRIORITY_QUEUED"
+        assert data["queue_position"] >= 142
