@@ -50,12 +50,27 @@ async def get_swarm_task(task_id: str) -> SwarmTaskResult:
 async def list_mcp_servers() -> List[MCPServerStatus]:
     return mcp_hub.list_servers()
 
+@router.get("/api/v1/mcp/tools", tags=["MCP Toolchain Hub"])
+async def list_mcp_tools() -> List[Dict[str, Any]]:
+    return mcp_hub.list_all_tools()
+
 @router.get("/api/v1/mcp/server/{server_id}", response_model=MCPServerStatus, tags=["MCP Toolchain Hub"])
 async def get_mcp_server(server_id: str) -> MCPServerStatus:
     srv = mcp_hub.get_server(server_id)
     if not srv:
         raise HTTPException(status_code=404, detail=f"MCP Server {server_id} not found")
     return srv
+
+# --- Benchmarks & Token Economics ---
+from core.benchmarks import get_benchmark_tasks, calculate_token_economics, BenchmarkTask
+
+@router.get("/api/v1/benchmarks/swe-bench", response_model=List[BenchmarkTask], tags=["Benchmarks & Evaluation"])
+async def get_swe_benchmarks() -> List[BenchmarkTask]:
+    return get_benchmark_tasks()
+
+@router.get("/api/v1/economics/calculator", tags=["Economics & Token Caching"])
+async def get_economics_calculation(loc: int = 50000, runs: int = 100) -> Dict[str, Any]:
+    return calculate_token_economics(loc=loc, runs_per_month=runs)
 
 # --- Leads & Waitlist ---
 @router.post("/api/v1/waitlist/join", status_code=status.HTTP_201_CREATED, tags=["Growth & Inquiries"])

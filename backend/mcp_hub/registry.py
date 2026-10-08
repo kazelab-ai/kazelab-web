@@ -74,4 +74,18 @@ class MCPHubRegistry:
     def total_tools(self) -> int:
         return sum(len(s.registered_tools) for s in self._servers.values())
 
+    def list_all_tools(self) -> List[Dict[str, Any]]:
+        tools = []
+        for s in self._servers.values():
+            for t in s.registered_tools:
+                tools.append({
+                    "tool_name": t,
+                    "server_id": s.server_id,
+                    "server_name": s.name,
+                    "endpoint": s.endpoint,
+                    "latency_ms": s.latency_ms,
+                    "protocol": s.protocol_version
+                })
+        return tools
+
 mcp_hub = MCPHubRegistry()

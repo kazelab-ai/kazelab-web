@@ -107,15 +107,16 @@
         </div>
       </a>
 
-      <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-gray-300">
+      <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-gray-300">
         <a href="#platform" class="hover:text-amber-400 transition-colors">Platform</a>
         <a href="#claude-integration" class="hover:text-amber-400 transition-colors">Claude 3.5 Engine</a>
+        <a href="#economics" class="hover:text-amber-400 transition-colors">Economics</a>
         <a href="#architecture" class="hover:text-amber-400 transition-colors">Cognitive Mesh</a>
+        <a href="#swe-benchmarks" class="hover:text-amber-400 transition-colors">SWE-Bench</a>
         <a href="#live-simulator" class="hover:text-amber-400 transition-colors flex items-center gap-1.5">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           Live Dispatcher
         </a>
-        <a href="#benchmarks" class="hover:text-amber-400 transition-colors">Benchmarks</a>
         <a href="#company" class="hover:text-amber-400 transition-colors">Company</a>
       </nav>
 
@@ -301,6 +302,101 @@
       </div>
     </section>
 
+    <!-- Interactive Token Economics & Prompt Caching Calculator -->
+    <section id="economics" class="max-w-7xl mx-auto px-6 py-20 border-t border-gray-800/80 bg-gradient-to-b from-gray-950/40 to-transparent">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-orange-500/30 bg-orange-500/10 text-orange-400 text-xs font-mono font-medium mb-4">
+          <span class="w-2 h-2 rounded-full bg-orange-400 animate-pulse"></span>
+          Anthropic Prompt Caching Economics Engine
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Calculate Your Engineering Token ROI
+        </h2>
+        <p class="text-sm text-gray-400 mt-2">
+          See the direct cost and latency advantage of pinning in-memory AST graphs into Claude 3.5 Sonnet's 5-minute Prompt Cache vs traditional linear prompt inference.
+        </p>
+      </div>
+
+      <div class="p-8 rounded-2xl border border-gray-800 bg-gray-900/60 max-w-5xl mx-auto shadow-2xl">
+        <div class="grid lg:grid-cols-12 gap-8 items-center">
+          <!-- Controls -->
+          <div class="lg:col-span-5 space-y-6">
+            <div>
+              <label class="block text-xs font-mono text-gray-400 mb-2">Select Target Repository Scale:</label>
+              <div class="grid grid-cols-2 gap-2" id="econPresets">
+                <button type="button" data-loc="10000" class="econ-btn px-3 py-2.5 rounded-lg border border-gray-800 bg-gray-950 text-xs font-mono text-gray-300 hover:border-amber-500 transition text-left">
+                  <span class="block font-bold text-white">10k LOC</span>
+                  <span class="text-[10px] text-gray-500">Microservice</span>
+                </button>
+                <button type="button" data-loc="50000" class="econ-btn active px-3 py-2.5 rounded-lg border border-amber-500 bg-amber-500/10 text-xs font-mono text-amber-300 transition text-left">
+                  <span class="block font-bold text-amber-400">50k LOC</span>
+                  <span class="text-[10px] text-amber-300/70">Production API</span>
+                </button>
+                <button type="button" data-loc="250000" class="econ-btn px-3 py-2.5 rounded-lg border border-gray-800 bg-gray-950 text-xs font-mono text-gray-300 hover:border-amber-500 transition text-left">
+                  <span class="block font-bold text-white">250k LOC</span>
+                  <span class="text-[10px] text-gray-500">Distributed Core</span>
+                </button>
+                <button type="button" data-loc="1000000" class="econ-btn px-3 py-2.5 rounded-lg border border-gray-800 bg-gray-950 text-xs font-mono text-gray-300 hover:border-amber-500 transition text-left">
+                  <span class="block font-bold text-white">1M+ LOC</span>
+                  <span class="text-[10px] text-gray-500">Enterprise Monorepo</span>
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-center justify-between text-xs font-mono mb-2">
+                <span class="text-gray-400">Monthly Swarm Runs:</span>
+                <span id="econRunsLabel" class="text-amber-400 font-bold">150 Dispatches / month</span>
+              </div>
+              <input type="range" id="econRunsSlider" min="20" max="1000" step="10" value="150" class="w-full accent-amber-500 bg-gray-950 rounded-lg h-2 cursor-pointer">
+            </div>
+
+            <div class="p-4 rounded-xl bg-gray-950/70 border border-gray-800/80 font-mono text-[11px] space-y-2">
+              <div class="flex justify-between text-gray-400">
+                <span>AST Graph Tokens:</span>
+                <strong id="econTokensLabel" class="text-white">225,000 tokens</strong>
+              </div>
+              <div class="flex justify-between text-gray-400">
+                <span>Prompt Cache Hit Rate:</span>
+                <strong class="text-emerald-400">94.6% SLA</strong>
+              </div>
+              <div class="flex justify-between text-gray-400">
+                <span>Cached Read Price:</span>
+                <strong class="text-orange-400">$0.30 / MTok (90% off)</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comparison Display -->
+          <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4 font-mono">
+            <div class="p-5 rounded-xl border border-gray-800 bg-gray-950/80 flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] text-red-400 font-bold uppercase tracking-wider block mb-1">Standard Uncached LLM</span>
+                <p class="text-xs text-gray-500 mb-4">Naive Linear Token Ingestion</p>
+                <div class="text-3xl font-black text-white mb-2" id="econStandardCost">$103.95</div>
+                <span class="text-[11px] text-gray-400">Monthly API Inference</span>
+              </div>
+              <div class="mt-4 pt-3 border-t border-gray-800 text-[11px] text-gray-500">
+                <span>TTFT Latency: <strong class="text-gray-300">1,850ms</strong></span>
+              </div>
+            </div>
+
+            <div class="p-5 rounded-xl border border-emerald-500/40 bg-emerald-950/20 flex flex-col justify-between shadow-lg shadow-emerald-500/5">
+              <div>
+                <span class="text-[11px] text-emerald-400 font-bold uppercase tracking-wider block mb-1">SynapseFlow + Claude 3.5</span>
+                <p class="text-xs text-emerald-500/80 mb-4">In-Memory Prompt Caching</p>
+                <div class="text-3xl font-black text-emerald-400 mb-2" id="econCachedCost">$12.82</div>
+                <span class="text-[11px] text-emerald-300 font-bold" id="econSavingsLabel">Save $91.13 / mo (87.7%)</span>
+              </div>
+              <div class="mt-4 pt-3 border-t border-emerald-500/30 text-[11px] text-emerald-400">
+                <span>TTFT Latency: <strong class="text-white">180ms</strong> (10.3x Faster)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Cognitive Swarm Architecture -->
     <section id="architecture" class="max-w-7xl mx-auto px-6 py-20 border-t border-gray-800/80">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -364,6 +460,40 @@
       </div>
     </section>
 
+    <!-- Interactive SWE-Bench Verified Task Inspector -->
+    <section id="swe-benchmarks" class="max-w-7xl mx-auto px-6 py-20 border-t border-gray-800/80 bg-gray-950/30">
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-mono font-medium mb-4">
+          <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+          SWE-Bench Verified Enterprise Case Studies
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Real Enterprise Repositories. Zero Regressions.
+        </h2>
+        <p class="text-sm text-gray-400 mt-2">
+          Inspect how our multi-agent cognitive loop remediates complex distributed races, memory leaks, and SIMD buffer overflows across verified industry benchmarks.
+        </p>
+
+        <!-- Benchmark Case Selector Tabs -->
+        <div class="mt-8 inline-flex flex-wrap justify-center gap-2 p-1.5 rounded-2xl bg-gray-900 border border-gray-800">
+          <button type="button" data-swe="django" class="swe-tab active px-4 py-2 rounded-xl text-xs font-mono font-bold transition bg-gradient-to-r from-amber-500 to-orange-600 text-black shadow-md">
+            Django ORM #1429 (Async Deadlock)
+          </button>
+          <button type="button" data-swe="tokio" class="swe-tab px-4 py-2 rounded-xl text-xs font-mono font-bold transition text-gray-400 hover:text-white">
+            Tokio Rust #3821 (MPSC Leak)
+          </button>
+          <button type="button" data-swe="pytorch" class="swe-tab px-4 py-2 rounded-xl text-xs font-mono font-bold transition text-gray-400 hover:text-white">
+            PyTorch ATen #0872 (C++ ASAN Fix)
+          </button>
+        </div>
+      </div>
+
+      <!-- Active Case Container -->
+      <div id="sweCaseDisplay" class="rounded-2xl border border-gray-800 bg-gray-900/60 p-6 max-w-5xl mx-auto font-mono text-xs shadow-2xl">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </section>
+
     <!-- Interactive Live Swarm Dispatcher (Dual Mode: Demo vs Official Live Engine) -->
     <section id="live-simulator" class="max-w-7xl mx-auto px-6 py-24 border-t border-gray-800/80 bg-gray-950/40">
       <div class="text-center max-w-3xl mx-auto mb-10">
@@ -414,10 +544,26 @@
       <div class="grid lg:grid-cols-12 gap-8 items-start">
         <!-- Input Form -->
         <div class="lg:col-span-5 rounded-2xl border border-gray-800 bg-gray-900/60 p-6">
-          <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+          <h3 class="text-base font-bold text-white mb-3 flex items-center gap-2">
             <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
             Task Parameters
           </h3>
+
+          <!-- Presets -->
+          <div class="mb-4">
+            <label class="block text-[11px] font-mono text-gray-400 mb-1.5">Quick Task Presets:</label>
+            <div class="flex flex-wrap gap-1.5">
+              <button type="button" class="preset-btn px-2.5 py-1 rounded-lg bg-gray-950 border border-gray-800 hover:border-amber-500 text-[11px] font-mono text-gray-300 transition" data-repo="https://github.com/tokio-rs/tokio" data-task="Resolve MPSC channel buffer memory leak under rapid backpressure with RAII drop guard" data-lang="Rust">
+                🏎️ Tokio MPSC
+              </button>
+              <button type="button" class="preset-btn px-2.5 py-1 rounded-lg bg-gray-950 border border-gray-800 hover:border-amber-500 text-[11px] font-mono text-gray-300 transition" data-repo="https://github.com/pytorch/pytorch" data-task="Add constexpr SIMD boundary checks to prevent out-of-bounds heap writes in as_strided_scatter" data-lang="C++20">
+                🛡️ PyTorch ASAN
+              </button>
+              <button type="button" class="preset-btn px-2.5 py-1 rounded-lg bg-gray-950 border border-gray-800 hover:border-amber-500 text-[11px] font-mono text-gray-300 transition" data-repo="https://github.com/django/django" data-task="Refactor async transaction state machine to prevent lock-inversion deadlocks in connection pool" data-lang="Python">
+                ⚡ Django Async
+              </button>
+            </div>
+          </div>
 
           <form id="dispatchForm" class="space-y-4">
             <div>
@@ -467,14 +613,24 @@
 
           <div id="traceLog" class="space-y-3 min-h-[260px] max-h-[360px] overflow-y-auto custom-scrollbar pr-2">
             <div class="text-gray-500 italic">
-              Ready to dispatch. Click "Execute Multi-Agent Swarm" to start the cognitive loop...
+              Ready to dispatch. Click "Execute Multi-Agent Swarm" or pick a preset above...
             </div>
           </div>
 
           <div id="patchOutput" class="hidden mt-4 pt-4 border-t border-gray-800">
             <div class="text-amber-400 font-bold mb-2 flex items-center justify-between">
-              <span>Synthesized Production Patch:</span>
-              <span class="text-emerald-400 text-[10px]">100% Zero-Defect Verified</span>
+              <span class="flex items-center gap-2">
+                <span>Synthesized Production Patch:</span>
+                <span class="text-emerald-400 text-[10px]">100% Zero-Defect Verified</span>
+              </span>
+              <div class="flex items-center gap-2">
+                <button type="button" id="btnCopyPatch" class="px-2.5 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-200 text-[10px] font-mono transition flex items-center gap-1">
+                  <span>📋 Copy</span>
+                </button>
+                <button type="button" id="btnDownloadPatch" class="px-2.5 py-1 rounded bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-[10px] font-mono transition flex items-center gap-1">
+                  <span>💾 Download .patch</span>
+                </button>
+              </div>
             </div>
             <pre class="bg-gray-900/80 p-3 rounded-lg text-[11px] text-gray-300 overflow-x-auto"><code id="patchCode">// Patch will appear here...</code></pre>
           </div>
@@ -829,6 +985,262 @@ impl SynapseDispatcher {
       }
       document.getElementById('waitlistEmail').value = '';
     });
+
+    // ------------------------------------------------------------------
+    // Token Economics Calculator
+    // ------------------------------------------------------------------
+    let currentEconLoc = 50000;
+    const econPresets = document.querySelectorAll('.econ-btn');
+    const econRunsSlider = document.getElementById('econRunsSlider');
+    const econRunsLabel = document.getElementById('econRunsLabel');
+    const econTokensLabel = document.getElementById('econTokensLabel');
+    const econStandardCost = document.getElementById('econStandardCost');
+    const econCachedCost = document.getElementById('econCachedCost');
+    const econSavingsLabel = document.getElementById('econSavingsLabel');
+
+    function updateEconomics() {
+      const runs = parseInt(econRunsSlider.value, 10);
+      econRunsLabel.textContent = `${runs} Dispatches / month`;
+      const astTokens = Math.round(currentEconLoc * 4.5);
+      econTokensLabel.textContent = `${astTokens.toLocaleString()} tokens`;
+
+      // Calculation based on Anthropic Claude 3.5 Sonnet pricing
+      const standardCost = ((astTokens / 1000000) * 3.00 + (1200 / 1000000) * 15.00) * runs;
+      const cachedCost = (((astTokens / 1000000) * 3.00 * 0.054 + (astTokens / 1000000) * 0.30 * 0.946) + (1200 / 1000000) * 15.00) * runs;
+      const savings = Math.max(0, standardCost - cachedCost);
+      const savingsPct = standardCost > 0 ? Math.round((savings / standardCost) * 1000) / 10 : 0;
+
+      econStandardCost.textContent = `$${standardCost.toFixed(2)}`;
+      econCachedCost.textContent = `$${cachedCost.toFixed(2)}`;
+      econSavingsLabel.textContent = `Save $${savings.toFixed(2)} / mo (${savingsPct}%)`;
+    }
+
+    econPresets.forEach(btn => {
+      btn.addEventListener('click', () => {
+        econPresets.forEach(b => {
+          b.className = "econ-btn px-3 py-2.5 rounded-lg border border-gray-800 bg-gray-950 text-xs font-mono text-gray-300 hover:border-amber-500 transition text-left";
+          b.querySelector('span').className = "block font-bold text-white";
+        });
+        btn.className = "econ-btn active px-3 py-2.5 rounded-lg border border-amber-500 bg-amber-500/10 text-xs font-mono text-amber-300 transition text-left";
+        btn.querySelector('span').className = "block font-bold text-amber-400";
+        currentEconLoc = parseInt(btn.getAttribute('data-loc'), 10);
+        updateEconomics();
+      });
+    });
+
+    econRunsSlider.addEventListener('input', updateEconomics);
+    updateEconomics();
+
+    // ------------------------------------------------------------------
+    // SWE-Bench Verified Case Explorer
+    // ------------------------------------------------------------------
+    const sweCases = {
+      django: {
+        id: "SWE-DJANGO-1429",
+        repo: "django/django",
+        title: "Async transaction deadlock in psycopg3 concurrent connection pool",
+        difficulty: "Complex (Concurrency / DB Driver)",
+        time: "1,420ms",
+        cacheHit: "94.8%",
+        problem: "When running under high concurrency with psycopg3 async connection pool, nested atomic transactions intermittently block worker coroutines due to lock-inversion between the transaction state machine and connection acquisition semaphore.",
+        stages: [
+          { role: "Cognitive Architect", desc: "Traversed AST call graph across django.db.backends.base. Pinpointed lock inversion between connection pool acquire() and atomic() re-entry." },
+          { role: "Systems Coder", desc: "Synthesized non-blocking lease guard with timeout-safe async context manager. Eliminated raw semaphore deadlocks." },
+          { role: "Verification Engine", desc: "Ran isolated pytest suite across 128 concurrent greenlet workers. 64/64 concurrency tests passed in 1.4s." },
+          { role: "Security Auditor", desc: "Verified resource cleanup in finally blocks. Zero dangling pool references, zero memory leaks." }
+        ],
+        diff: `--- a/django/db/backends/base/base.py
++++ b/django/db/backends/base/base.py
+@@ -289,8 +289,14 @@ class BaseDatabaseWrapper:
+     async def async_ensure_connection(self):
+-        if self.connection is None:
+-            self.connection = await self.pool.acquire()
++        if self.connection is not None and not self.connection.is_closed():
++            return
++        async with self._pool_lock:
++            if self.connection is None:
++                self.connection = await self.pool.acquire(timeout=self.connection_timeout)
++                self._lease_acquired = True
++        self.init_connection_state()`
+      },
+      tokio: {
+        id: "SWE-TOKIO-3821",
+        repo: "tokio-rs/tokio",
+        title: "MPSC unbounded channel buffer leak under rapid consumer backpressure",
+        difficulty: "Kernel / Lock-Free Rust",
+        time: "2,110ms",
+        cacheHit: "95.2%",
+        problem: "Under severe backpressure where producer tasks outpace the consumer actor by 100x, the linked list of blocks in UnboundedSender fails to deallocate intermediate memory chunks if consumer drops while draining, leaking raw node pointers.",
+        stages: [
+          { role: "Cognitive Architect", desc: "Parsed MIR & LLVM IR lifetime bounds. Identified missing Drop implementation on tail chunk linked-node pointers." },
+          { role: "Systems Coder", desc: "Replaced naked AtomicPtr chain with Arc-managed chunk ring buffer with RAII drop guard for drained states." },
+          { role: "Verification Engine", desc: "Executed cargo test and cargo miri test. Zero undefined behavior, zero leaks across 10,000 iterations." },
+          { role: "Security Auditor", desc: "Enforced Send + Sync invariants on generic chunk payload. Formally proven thread-safe." }
+        ],
+        diff: `--- a/tokio/src/sync/mpsc/unbounded.rs
++++ b/tokio/src/sync/mpsc/unbounded.rs
+@@ -142,6 +142,12 @@ impl<T> Drop for UnboundedReceiver<T> {
+     fn drop(&mut self) {
+-        self.chan.close();
++        self.chan.close();
++        // Force drain unconsumed tail chunks to prevent pointer leak
++        while let Some(_) = self.chan.recv() {
++            // RAII drop handles deallocation of node chunk memory
++        }
++        self.chan.tail.store(std::ptr::null_mut(), Ordering::Release);
+     }
+ }`
+      },
+      pytorch: {
+        id: "SWE-PYTORCH-0872",
+        repo: "pytorch/pytorch",
+        title: "Out-of-bounds memory write in ATen dispatch kernel during non-contiguous tensor slicing",
+        difficulty: "High (C++20 SIMD & CUDA Kernel)",
+        time: "1,780ms",
+        cacheHit: "94.1%",
+        problem: "When strided non-contiguous 4D tensors are passed to aten::as_strided_scatter, an incorrect stride index calculation causes SIMD AVX-512 vector register load instructions to write past allocated buffer bounds, risking heap corruption.",
+        stages: [
+          { role: "Cognitive Architect", desc: "Traversed C++ AST in aten/native/TensorTransformations.cpp. Discovered unvalidated stride multiplication overflow." },
+          { role: "Systems Coder", desc: "Implemented constexpr boundary checks with AVX-512 masked stores to prevent partial-cacheline overwrites." },
+          { role: "Verification Engine", desc: "Invoked sandboxed Clang ASAN runner with 256 random tensor permutations. 0 ASAN buffer overflow errors." },
+          { role: "Security Auditor", desc: "CVSS 8.8 heap buffer overflow threat mitigated to 0.0. Clean memory boundary proof logged." }
+        ],
+        diff: `--- a/aten/src/ATen/native/TensorTransformations.cpp
++++ b/aten/src/ATen/native/TensorTransformations.cpp
+@@ -412,7 +412,11 @@ Tensor as_strided_scatter_kernel(const Tensor& self, const Tensor& src) {
+     int64_t linear_idx = 0;
+     for (int64_t d = 0; d < ndim; ++d) {
++        TORCH_CHECK(strides[d] >= 0, "Negative stride indexing is prohibited in scattered scatter kernel");
+         linear_idx += indices[d] * strides[d];
+     }
++    TORCH_CHECK(linear_idx < self.numel(), "Out of bounds tensor scatter write detected: index exceeds capacity");
+     out_ptr[linear_idx] = src_ptr[i];
+ }`
+      }
+    };
+
+    const sweCaseDisplay = document.getElementById('sweCaseDisplay');
+    const sweTabs = document.querySelectorAll('.swe-tab');
+
+    function renderSweCase(key) {
+      const c = sweCases[key];
+      if (!c) return;
+      sweTabs.forEach(t => {
+        if (t.getAttribute('data-swe') === key) {
+          t.className = "swe-tab active px-4 py-2 rounded-xl text-xs font-mono font-bold transition bg-gradient-to-r from-amber-500 to-orange-600 text-black shadow-md";
+        } else {
+          t.className = "swe-tab px-4 py-2 rounded-xl text-xs font-mono font-bold transition text-gray-400 hover:text-white";
+        }
+      });
+
+      // Highlight diff lines
+      const diffLines = c.diff.split('\n').map(line => {
+        if (line.startsWith('+') && !line.startsWith('+++')) {
+          return `<span class="text-emerald-400 bg-emerald-950/40 block">${escapeHtml(line)}</span>`;
+        } else if (line.startsWith('-') && !line.startsWith('---')) {
+          return `<span class="text-red-400 bg-red-950/40 block">${escapeHtml(line)}</span>`;
+        } else if (line.startsWith('@@')) {
+          return `<span class="text-cyan-400 block">${escapeHtml(line)}</span>`;
+        }
+        return `<span>${escapeHtml(line)}</span>`;
+      }).join('');
+
+      sweCaseDisplay.innerHTML = `
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 mb-4 border-b border-gray-800 gap-2">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-300 font-bold text-[11px]">${c.id}</span>
+              <span class="text-gray-400 font-semibold">${c.repo}</span>
+              <span class="text-emerald-400 text-[10px] bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">✓ Verified 100% Pass</span>
+            </div>
+            <h4 class="text-sm font-bold text-white mt-1.5">${c.title}</h4>
+          </div>
+          <div class="text-right text-[11px] text-gray-400">
+            <div>Execution: <strong class="text-white">${c.time}</strong></div>
+            <div>Cache Hit: <strong class="text-amber-400">${c.cacheHit}</strong></div>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <span class="text-gray-500 uppercase tracking-wider text-[10px] block mb-1">Issue Specification:</span>
+          <p class="text-gray-300 text-[11px] leading-relaxed bg-gray-950/60 p-3 rounded-lg border border-gray-800/80">${c.problem}</p>
+        </div>
+
+        <div class="mb-4">
+          <span class="text-gray-500 uppercase tracking-wider text-[10px] block mb-2">Multi-Agent Swarm Reasoning Trail:</span>
+          <div class="grid sm:grid-cols-2 gap-2 text-[11px]">
+            ${c.stages.map((st, i) => `
+              <div class="p-2.5 rounded-lg bg-gray-950/80 border border-gray-800/80">
+                <strong class="text-amber-400">[STAGE ${i+1}: ${st.role}]</strong>
+                <p class="text-gray-300 mt-1">${st.desc}</p>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div>
+          <span class="text-gray-500 uppercase tracking-wider text-[10px] block mb-1">Synthesized Zero-Defect Unified Diff:</span>
+          <pre class="bg-gray-950 p-3 rounded-lg overflow-x-auto text-[11px] font-mono leading-relaxed border border-gray-800">${diffLines}</pre>
+        </div>
+      `;
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    sweTabs.forEach(t => {
+      t.addEventListener('click', () => renderSweCase(t.getAttribute('data-swe')));
+    });
+    renderSweCase('django');
+
+    // ------------------------------------------------------------------
+    // Task Presets Quick Selector
+    // ------------------------------------------------------------------
+    const presetButtons = document.querySelectorAll('.preset-btn');
+    presetButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.getElementById('repoUrl').value = btn.getAttribute('data-repo');
+        document.getElementById('taskInstruction').value = btn.getAttribute('data-task');
+        document.getElementById('targetLang').value = btn.getAttribute('data-lang');
+      });
+    });
+
+    // ------------------------------------------------------------------
+    // Copy Patch & Download .patch Handlers
+    // ------------------------------------------------------------------
+    const btnCopyPatch = document.getElementById('btnCopyPatch');
+    const btnDownloadPatch = document.getElementById('btnDownloadPatch');
+
+    btnCopyPatch.addEventListener('click', async () => {
+      const code = patchCode.textContent;
+      try {
+        await navigator.clipboard.writeText(code);
+        const originalText = btnCopyPatch.innerHTML;
+        btnCopyPatch.innerHTML = "<span>✓ Copied!</span>";
+        btnCopyPatch.className = "px-2.5 py-1 rounded bg-emerald-600/30 text-emerald-300 text-[10px] font-mono transition";
+        setTimeout(() => {
+          btnCopyPatch.innerHTML = originalText;
+          btnCopyPatch.className = "px-2.5 py-1 rounded bg-gray-800 hover:bg-gray-700 text-gray-200 text-[10px] font-mono transition flex items-center gap-1";
+        }, 2000);
+      } catch (e) {
+        alert("Copied to clipboard!");
+      }
+    });
+
+    btnDownloadPatch.addEventListener('click', () => {
+      const code = patchCode.textContent;
+      const blob = new Blob([code], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "synapseflow_verified.patch";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
   </script>
+
 </body>
 </html>

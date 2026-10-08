@@ -73,3 +73,35 @@ async def test_lead_and_waitlist_pipeline():
         data = res.json()
         assert data["success"] is True
         assert data["queue_position"] >= 142
+
+@pytest.mark.asyncio
+async def test_mcp_tools_catalog():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        res = await client.get("/api/v1/mcp/tools")
+        assert res.status_code == 200
+        tools = res.json()
+        assert len(tools) >= 10
+        assert any(t["tool_name"] == "parse_ast" for t in tools)
+
+@pytest.mark.asyncio
+async def test_swe_bench_evaluation_registry():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        res = await client.get("/api/v1/benchmarks/swe-bench")
+        assert res.status_code == 200
+        tasks = res.json()
+        assert len(tasks) == 3
+        assert any(t["task_id"] == "SWE-DJANGO-1429" for t in tasks)
+        assert any(t["task_id"] == "SWE-TOKIO-3821" for t in tasks)
+
+@pytest.mark.asyncio
+async def test_token_economics_calculator():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        res = await client.get("/api/v1/economics/calculator?loc=100000&runs=150")
+        assert res.status_code == 200
+        data = res.json()
+        assert data["repository_loc"] == 100000
+        assert data["savings_percentage"] > 80.0
+        assert data["ttft_synapseflow_ms"] < data["ttft_standard_ms"]
