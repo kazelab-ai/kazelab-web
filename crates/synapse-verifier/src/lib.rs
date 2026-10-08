@@ -2,6 +2,8 @@ pub mod diagnostics;
 pub mod prover;
 pub mod harness;
 pub mod repair;
+pub mod symbolic;
+pub mod cve;
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;

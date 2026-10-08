@@ -8,6 +8,8 @@ pub mod ring;
 pub mod actor;
 pub mod telemetry;
 pub mod cache;
+pub mod concurrency;
+pub mod router;
 
 use std::sync::Arc;
 use tokio::sync::{mpsc, Mutex, RwLock};

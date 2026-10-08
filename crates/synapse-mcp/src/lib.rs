@@ -1,6 +1,8 @@
 pub mod protocol;
 pub mod transports;
 pub mod tools;
+pub mod server;
+pub mod client;
 
 use std::collections::HashMap;
 use tokio::sync::RwLock;
