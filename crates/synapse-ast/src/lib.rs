@@ -1,5 +1,7 @@
 pub mod parser;
 pub mod graph;
+pub mod cfg;
+pub mod metrics;
 
 use std::collections::{HashMap, HashSet};
 use serde::{Deserialize, Serialize};

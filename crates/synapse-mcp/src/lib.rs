@@ -1,4 +1,6 @@
-//! Model Context Protocol (MCP 1.1) Toolchain Hub & Registry.
+pub mod protocol;
+pub mod transports;
+pub mod tools;
 
 use std::collections::HashMap;
 use tokio::sync::RwLock;

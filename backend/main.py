@@ -8,6 +8,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from core.config import settings
 from api.routes import router
+from api.v2.routes import router_v2
 
 app = FastAPI(
     title=settings.app_name,
@@ -39,6 +40,7 @@ app.add_middleware(
 
 # Mount modular router
 app.include_router(router)
+app.include_router(router_v2)
 
 if __name__ == "__main__":
     import uvicorn

@@ -5,6 +5,9 @@
 //! - Token yield telemetry tracking and prompt cache TTL managers.
 
 pub mod ring;
+pub mod actor;
+pub mod telemetry;
+pub mod cache;
 
 use std::sync::Arc;
 use tokio::sync::{mpsc, Mutex, RwLock};
