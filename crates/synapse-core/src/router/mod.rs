@@ -1,5 +1,7 @@
 //! Dynamic Routing Table and Role Matching for Multi-Agent Swarms.
 
+pub mod consistent_hash;
+
 use std::collections::HashMap;
 use tokio::sync::RwLock;
 

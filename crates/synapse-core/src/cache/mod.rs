@@ -1,5 +1,7 @@
 //! Tiered LRU Prompt Cache with sub-second TTL eviction.
 
+pub mod striped;
+
 use std::collections::HashMap;
 use std::time::{Duration, Instant};
 use tokio::sync::RwLock;

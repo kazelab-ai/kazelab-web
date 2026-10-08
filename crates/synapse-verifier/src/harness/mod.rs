@@ -1,5 +1,7 @@
 //! Deterministic Execution Sandbox Harness for Cargo, Pytest, and Clang.
 
+pub mod fuzz;
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

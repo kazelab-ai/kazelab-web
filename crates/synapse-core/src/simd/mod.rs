@@ -2,6 +2,7 @@
 //! Accelerates semantic token deduplication and prompt cache lookup.
 
 pub mod bitset;
+pub mod fma4;
 
 pub struct SimdVectorMath;
 
