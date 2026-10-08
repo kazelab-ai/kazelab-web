@@ -6,6 +6,7 @@ pub mod symbolic;
 pub mod cve;
 pub mod smt;
 pub mod cegis;
+pub mod symbolic_symexec;
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;

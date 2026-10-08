@@ -12,6 +12,8 @@ pub mod concurrency;
 pub mod router;
 pub mod shm;
 pub mod raft;
+pub mod kv_paged;
+pub mod pddl;
 
 use std::sync::Arc;
 use tokio::sync::{mpsc, Mutex, RwLock};

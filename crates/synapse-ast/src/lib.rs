@@ -5,6 +5,7 @@ pub mod metrics;
 pub mod visitor;
 pub mod diff;
 pub mod interproc;
+pub mod cpg;
 
 use std::collections::{HashMap, HashSet};
 use serde::{Deserialize, Serialize};
