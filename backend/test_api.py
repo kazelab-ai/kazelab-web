@@ -14,6 +14,14 @@ async def test_health_check():
         assert "Claude 3.5 Sonnet" in data["foundation_engine"]
 
 @pytest.mark.asyncio
+async def test_root_index_serving():
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
+        res = await client.get("/")
+        assert res.status_code == 200
+        assert "KazeLab AI" in res.text
+
+@pytest.mark.asyncio
 async def test_telemetry():
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:

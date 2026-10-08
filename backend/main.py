@@ -45,6 +45,25 @@ app.add_middleware(RateLimiterMiddleware, max_requests_per_minute=240)
 app.include_router(router)
 app.include_router(router_v2)
 
+# Static Landing Page Mount
+import os
+from fastapi.responses import FileResponse
+
+INDEX_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "index.html"))
+LOGO_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "kazelab-logo.jpg"))
+
+@app.get("/", include_in_schema=False)
+async def serve_index():
+    if os.path.exists(INDEX_PATH):
+        return FileResponse(INDEX_PATH)
+    return {"status": "ok", "service": "KazeLab AI SynapseFlow Engine"}
+
+@app.get("/kazelab-logo.jpg", include_in_schema=False)
+async def serve_logo():
+    if os.path.exists(LOGO_PATH):
+        return FileResponse(LOGO_PATH)
+    return {"error": "Logo asset not found"}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host=settings.host, port=settings.port, reload=True)
