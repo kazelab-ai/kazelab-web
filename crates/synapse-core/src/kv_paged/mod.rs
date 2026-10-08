@@ -1,5 +1,4 @@
-//! Paged Virtual Memory KV Cache for Transformer Prompt Caching (PagedAttention Architecture).
-//! Eliminates fragmentation and enables sub-millisecond prefix sharing across swarm agents.
+pub mod eviction;
 
 use std::collections::HashMap;
 use std::sync::atomic::{AtomicUsize, Ordering};

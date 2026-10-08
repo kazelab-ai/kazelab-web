@@ -1,4 +1,5 @@
 pub mod dfa;
+pub mod dominator;
 
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};

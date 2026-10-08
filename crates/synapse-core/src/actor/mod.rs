@@ -1,4 +1,5 @@
-//! Actor lifecycle, mailbox management, and supervisor hierarchy.
+pub mod behaviors;
+pub mod supervision;
 
 use std::sync::Arc;
 use tokio::sync::{mpsc, RwLock};

@@ -1,4 +1,4 @@
-//! First-Order Logic SMT Clause Solver for Path Feasibility Verification.
+pub mod bitvec;
 
 use serde::{Deserialize, Serialize};
 
