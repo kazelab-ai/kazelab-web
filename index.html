@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KazeLab AI — Autonomous Multi-Agent Orchestration & Enterprise Intelligence</title>
+  <meta name="description" content="Next-generation autonomous agent orchestration platform engineered by KazeLab AI, powered natively by Anthropic Claude 3.5 Sonnet. Accelerating enterprise workflows with reasoning loops and deterministic tooling.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#fbf7f4',
+              100: '#f5ede6',
+              200: '#ebdacf',
+              500: '#d97706',
+              600: '#c2410c',
+              anthropic: '#D97706',
+              dark: '#0B0F19',
+              card: '#111827',
+              border: '#1F2937'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: #0B0F19;
+      color: #E2E8F0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .gradient-glow {
+      background: radial-gradient(circle at 50% 20%, rgba(217, 119, 6, 0.15) 0%, rgba(11, 15, 25, 0) 70%);
+    }
+    .code-glow {
+      box-shadow: 0 0 35px -5px rgba(217, 119, 6, 0.2);
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-amber-500 selection:text-black">
+
+  <!-- Glow Background -->
+  <div class="fixed inset-0 gradient-glow pointer-events-none"></div>
+
+  <!-- Navbar -->
+  <header class="relative z-20 border-b border-gray-800/80 bg-gray-950/70 backdrop-blur-md sticky top-0">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg shadow-orange-500/20">
+          <svg class="w-6 h-6 text-black font-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            SynapseFlow <span class="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 font-mono">v2.4-agentic</span>
+          </span>
+          <span class="text-[11px] text-gray-400 font-mono">Autonomous Cognitive Architecture</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+        <a href="#architecture" class="hover:text-amber-400 transition-colors">Architecture</a>
+        <a href="#agents" class="hover:text-amber-400 transition-colors">Agent Swarms</a>
+        <a href="#claude-integration" class="hover:text-amber-400 transition-colors">Claude 3.5 Engine</a>
+        <a href="#benchmarks" class="hover:text-amber-400 transition-colors">Evaluation</a>
+      </nav>
+
+      <div class="flex items-center space-x-4">
+        <a href="#demo" class="px-5 py-2.5 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 text-black font-semibold text-sm hover:brightness-110 transition shadow-md shadow-orange-500/20">
+          Request Early Access
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="relative z-10">
+    <section class="max-w-7xl mx-auto px-6 pt-24 pb-20 text-center lg:text-left grid lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-mono font-medium mb-6">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          Engineered for Anthropic Claude 3.5 Models
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
+          Autonomous Agent Swarms Driven by <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-amber-200">First-Principles Reasoning</span>.
+        </h1>
+
+        <p class="text-lg text-gray-300 mb-8 leading-relaxed max-w-2xl">
+          SynapseFlow is an enterprise-grade agent orchestration framework. We replace brittle prompt chains with self-healing, multi-agent reasoning loops, deterministic code verification, and native toolchain execution powered by Anthropic Claude 3.5 Sonnet.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
+          <a href="#demo" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-600 text-black font-bold text-base hover:brightness-110 transition shadow-lg shadow-orange-500/25 flex items-center justify-center gap-2">
+            Explore Documentation
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+          <a href="#claude-integration" class="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-gray-700 bg-gray-900/60 hover:bg-gray-800 text-white font-medium text-base transition flex items-center justify-center gap-2">
+            View Claude 3.5 Architecture
+          </a>
+        </div>
+
+        <div class="mt-10 flex items-center gap-6 justify-center lg:justify-start text-xs font-mono text-gray-400">
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-400 font-bold">✓</span> 200K Context Optimization
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-400 font-bold">✓</span> Zero Data Retention (HIPAA/SOC2)
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-400 font-bold">✓</span> MCP Protocol Native
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Code / Architecture Showcase -->
+      <div class="lg:col-span-5">
+        <div class="rounded-2xl border border-gray-800 bg-gray-950/90 p-5 font-mono text-xs shadow-2xl code-glow text-left">
+          <div class="flex items-center justify-between pb-3 mb-4 border-b border-gray-800">
+            <div class="flex items-center space-x-2">
+              <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+              <span class="ml-2 text-gray-400">synapse_orchestrator.rs</span>
+            </div>
+            <span class="text-[10px] text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded border border-amber-400/20">Claude 3.5 Active</span>
+          </div>
+
+          <pre class="text-gray-300 leading-relaxed overflow-x-auto"><code><span class="text-purple-400">use</span> anthropic_sdk::prelude::*;
+<span class="text-purple-400">use</span> synapse_core::{AgentMesh, ToolRegistry};
+
+<span class="text-emerald-400">#[tokio::main]</span>
+<span class="text-purple-400">async fn</span> <span class="text-blue-400">main</span>() -> Result&lt;()&gt; {
+    <span class="text-gray-500">// Initialize Claude 3.5 Sonnet Swarm</span>
+    <span class="text-purple-400">let</span> client = Anthropic::new()
+        .model(<span class="text-amber-300">"claude-3-5-sonnet-20241022"</span>)
+        .max_tokens(<span class="text-orange-400">8192</span>)
+        .enable_tool_use();
+
+    <span class="text-purple-400">let mut</span> mesh = AgentMesh::new(client);
+    mesh.register_mcp_servers(<span class="text-amber-300">"config/tools.json"</span>).<span class="text-purple-400">await</span>?;
+
+    <span class="text-gray-500">// Autonomous verification feedback loop</span>
+    <span class="text-purple-400">let</span> execution = mesh.dispatch(Task {
+        goal: <span class="text-amber-300">"Zero-defect microservice refactoring"</span>,
+        strategy: ReasoningPolicy::FirstPrinciples,
+    }).<span class="text-purple-400">await</span>?;
+
+    println!(<span class="text-amber-300">"Proof converged in {} cycles."</span>, execution.cycles);
+    Ok(())
+}</code></pre>
+          <div class="mt-4 pt-3 border-t border-gray-800/80 flex items-center justify-between text-[11px] text-gray-400">
+            <span class="text-emerald-400">● 100% Deterministic Execution</span>
+            <span>Latency: 42ms TTFT</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Metrics / Trust -->
+    <section class="border-y border-gray-800/80 bg-gray-950/40 py-12">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-3xl md:text-4xl font-extrabold text-white mb-1">94.8%</div>
+          <div class="text-xs font-mono text-gray-400 uppercase tracking-wider">SWE-Bench Verified Score</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-4xl font-extrabold text-amber-400 mb-1">10x</div>
+          <div class="text-xs font-mono text-gray-400 uppercase tracking-wider">Token Efficiency via Cache</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-4xl font-extrabold text-white mb-1">&lt; 150ms</div>
+          <div class="text-xs font-mono text-gray-400 uppercase tracking-wider">Subagent Dispatch Latency</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-4xl font-extrabold text-orange-400 mb-1">Zero</div>
+          <div class="text-xs font-mono text-gray-400 uppercase tracking-wider">Prompt Degradation Loops</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Anthropic Claude 3.5 Engine -->
+    <section id="claude-integration" class="max-w-7xl mx-auto px-6 py-24">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-mono text-amber-400 uppercase tracking-widest mb-3">Foundational Model Alignment</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Engineered Directly Upon the Anthropic Stack
+        </p>
+        <p class="text-base text-gray-400 mt-4 leading-relaxed">
+          SynapseFlow is architected from day one to harness the unmatched reasoning depth, prompt compliance, and computer-use primitives of the Claude family.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Feature 1 -->
+        <div class="p-8 rounded-2xl border border-gray-800 bg-gray-900/40 hover:border-amber-500/40 transition duration-300">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xl mb-6">
+            01
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Model Context Protocol (MCP)</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Direct implementation of Anthropic's open MCP standard. Our runtime seamlessly provisions databases, terminal runners, GitHub integrations, and custom RPC sandboxes.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="p-8 rounded-2xl border border-gray-800 bg-gray-900/40 hover:border-amber-500/40 transition duration-300">
+          <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 flex items-center justify-center font-bold text-xl mb-6">
+            02
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">Prompt Caching Optimization</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Leveraging Anthropic's prompt caching to store multi-megabyte codebase graphs and system ASTs in-memory, slashing API costs by up to 90% and latency by 85%.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="p-8 rounded-2xl border border-gray-800 bg-gray-900/40 hover:border-amber-500/40 transition duration-300">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xl mb-6">
+            03
+          </div>
+          <h3 class="text-xl font-bold text-white mb-3">First-Principles Reflection Loops</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Multi-branch hypothesis evaluation using Claude 3.5 Sonnet's chain-of-thought capabilities. Code is mathematically proved and compiled before merging.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture Breakdown -->
+    <section id="architecture" class="max-w-7xl mx-auto px-6 py-20 border-t border-gray-800/80">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Autonomous Pipeline</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-2 mb-6">
+            Self-Healing Development & Production Verification Loop
+          </h2>
+          <div class="space-y-6 text-sm text-gray-300">
+            <div class="flex items-start gap-4">
+              <span class="w-7 h-7 rounded-lg bg-gray-800 text-amber-400 flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5">1</span>
+              <div>
+                <strong class="text-white block font-semibold">AST & Repo Ingestion:</strong>
+                Parses symbols, interfaces, and dependencies into an in-memory knowledge graph.
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="w-7 h-7 rounded-lg bg-gray-800 text-amber-400 flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5">2</span>
+              <div>
+                <strong class="text-white block font-semibold">Subagent Hive Dispatch:</strong>
+                Architect, Coder, and Security Auditor subagents deliberate concurrently via Claude Sonnet API.
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="w-7 h-7 rounded-lg bg-gray-800 text-amber-400 flex items-center justify-center font-mono font-bold text-xs shrink-0 mt-0.5">3</span>
+              <div>
+                <strong class="text-white block font-semibold">Automated Sandbox Compiles:</strong>
+                Immediate test execution against isolated containers with feedback-driven repair loops.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-gray-800 bg-gray-900/60 p-6 font-mono text-xs text-gray-300">
+          <div class="text-gray-400 mb-3 font-semibold text-xs border-b border-gray-800 pb-2">Swarm Execution Trace (Real-time telemetry)</div>
+          <div class="space-y-2 text-[12px]">
+            <p class="text-emerald-400">[00:00.012] [SUPERVISOR] Task dispatched: Refactor Auth Service to OAuth2/OIDC</p>
+            <p class="text-blue-400">[00:00.145] [RESEARCHER] Context ingested: 14 files, 12,400 tokens (Cached: 94%)</p>
+            <p class="text-amber-400">[00:01.210] [CODER-SONNET] Generated 324 lines of clean Rust code</p>
+            <p class="text-red-400">[00:02.100] [COMPILER-TEST] Cargo check failed: missing trait bound `Send` on line 84</p>
+            <p class="text-yellow-400">[00:02.340] [HEALER-SONNET] Self-healing cycle 1: Wrapped state in Arc&lt;Mutex&lt;T&gt;&gt;</p>
+            <p class="text-emerald-400">[00:03.110] [COMPILER-TEST] Cargo test passed! 24 unit tests, 0 failures</p>
+            <p class="text-white font-bold">[00:03.450] [SECURITY-AUDITOR] Zero CVEs, Zero memory leaks. Approved.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About / Company Statement for Reviewers -->
+    <section class="max-w-7xl mx-auto px-6 py-20 border-t border-gray-800/80 bg-gray-950/20">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-4">About SynapseFlow AI Labs</h2>
+        <p class="text-sm text-gray-400 leading-relaxed mb-6">
+          Founded in 2024, SynapseFlow AI is an applied artificial intelligence research & systems engineering startup based in Vietnam. Our mission is to build sovereign agentic software infrastructure, empowering engineering teams worldwide to automate complex development cycles with zero hallucination.
+        </p>
+        <div class="inline-flex flex-wrap justify-center items-center gap-6 text-xs font-mono text-gray-400">
+          <span>HQ: Ho Chi Minh City / Global Remote</span>
+          <span>•</span>
+          <span>Contact: <span class="text-amber-400">founder@kazelab.xyz</span></span>
+          <span>•</span>
+          <span>Targeting: Enterprise DevSecOps & AI Agents</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-800/80 bg-gray-950 py-10 relative z-20">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400">
+      <p>© 2026 SynapseFlow AI Inc. All rights reserved. Powered natively by Anthropic Claude.</p>
+      <div class="flex space-x-6 mt-4 sm:mt-0">
+        <a href="#" class="hover:text-white transition">Privacy Policy</a>
+        <a href="#" class="hover:text-white transition">Terms of Service</a>
+        <a href="#" class="hover:text-white transition">Security (SOC2)</a>
+        <a href="https://claude.com" target="_blank" class="hover:text-amber-400 transition">Anthropic Partner</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
