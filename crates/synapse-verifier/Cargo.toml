@@ -1,0 +1,16 @@
+[package]
+name = "synapse-verifier"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Deterministic compiler test harness, memory safety prover, and self-healing patch engine"
+
+[dependencies]
+synapse-core = { path = "../synapse-core" }
+synapse-ast = { path = "../synapse-ast" }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }

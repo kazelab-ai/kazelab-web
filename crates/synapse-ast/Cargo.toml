@@ -1,0 +1,15 @@
+[package]
+name = "synapse-ast"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "High-performance semantic AST parser, dependency DAG, and context graph extractor"
+
+[dependencies]
+synapse-core = { path = "../synapse-core" }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }

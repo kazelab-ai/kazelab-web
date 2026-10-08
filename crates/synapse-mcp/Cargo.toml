@@ -1,0 +1,16 @@
+[package]
+name = "synapse-mcp"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "Model Context Protocol (MCP 1.1) native client and tool server hub"
+
+[dependencies]
+synapse-core = { path = "../synapse-core" }
+tokio = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+async-trait = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }

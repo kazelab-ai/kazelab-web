@@ -1,0 +1,24 @@
+{
+  "name": "@kazelab/synapse-sdk",
+  "version": "3.1.0",
+  "description": "Enterprise TypeScript / JavaScript SDK for KazeLab SynapseFlow Multi-Agent Swarm Platform",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "author": "Tú (KazeLAB) <founder@kazelab.xyz>",
+  "license": "Apache-2.0",
+  "homepage": "https://kazelab.xyz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kazelab-ai/kazelab-web.git"
+  },
+  "keywords": [
+    "anthropic",
+    "claude",
+    "mcp",
+    "model-context-protocol",
+    "multi-agent",
+    "autonomous-coding",
+    "kazelab"
+  ]
+}

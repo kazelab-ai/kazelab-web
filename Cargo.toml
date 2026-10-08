@@ -1,0 +1,30 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/synapse-core",
+    "crates/synapse-mcp",
+    "crates/synapse-ast",
+    "crates/synapse-verifier",
+    "crates/synapse-cli",
+]
+
+[workspace.package]
+version = "3.1.0"
+authors = ["Tú (KazeLAB) <founder@kazelab.xyz>", "KazeLab AI Systems Team"]
+edition = "2021"
+license = "Apache-2.0"
+repository = "https://github.com/kazelab-ai/kazelab-web"
+homepage = "https://kazelab.xyz"
+
+[workspace.dependencies]
+tokio = { version = "1.38", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+async-trait = "0.1"
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+bytes = "1.6"
+futures = "0.3"
+clap = { version = "4.5", features = ["derive"] }

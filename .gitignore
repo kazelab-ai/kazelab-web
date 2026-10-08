@@ -18,6 +18,10 @@ htmlcov/
 .env.*
 !.env.example
 
+# Rust build artifacts
+target/
+**/*.rs.bk
+
 # IDE & OS files
 .DS_Store
 Thumbs.db
