@@ -1,6 +1,8 @@
 //! Code Property Graph (CPG) Engine (Yamaguchi et al., IEEE S&P).
 //! Unifies Abstract Syntax Tree (AST), Control Flow Graph (CFG), and Program Dependence Graph (PDG).
 
+pub mod traversal;
+
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 

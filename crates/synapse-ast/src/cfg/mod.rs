@@ -1,5 +1,7 @@
 pub mod dfa;
 pub mod dominator;
+pub mod loop_analyzer;
+pub mod tarjan;
 
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};

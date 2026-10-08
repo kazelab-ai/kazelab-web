@@ -7,6 +7,9 @@ pub mod diff;
 pub mod interproc;
 pub mod cpg;
 pub mod ssa;
+pub mod types_inference;
+pub mod demangle;
+pub mod arena;
 
 use std::collections::{HashMap, HashSet};
 use serde::{Deserialize, Serialize};

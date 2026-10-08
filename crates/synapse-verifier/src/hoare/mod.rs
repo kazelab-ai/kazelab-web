@@ -1,5 +1,4 @@
-//! Axiomatic Semantics & Hoare Logic Triples Verifier ({P} C {Q}).
-//! Proves precondition and postcondition invariants mathematically (C.A.R. Hoare 1969).
+pub mod wp;
 
 use serde::{Deserialize, Serialize};
 

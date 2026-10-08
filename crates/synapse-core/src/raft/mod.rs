@@ -1,3 +1,6 @@
+pub mod wal;
+pub mod merkle;
+
 use std::sync::atomic::{AtomicU64, Ordering};
 use tokio::sync::RwLock;
 use serde::{Deserialize, Serialize};

@@ -1,6 +1,8 @@
 //! SIMD-Accelerated Token Embedding Cosine Similarity Vector Kernels (AVX-512 / AVX2 Emulation).
 //! Accelerates semantic token deduplication and prompt cache lookup.
 
+pub mod bitset;
+
 pub struct SimdVectorMath;
 
 impl SimdVectorMath {

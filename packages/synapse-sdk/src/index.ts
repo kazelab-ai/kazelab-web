@@ -3,6 +3,8 @@
  * Real-time Multi-Agent Swarm Orchestration, MCP Tool Call Streaming, and AST Ingestion
  */
 
+export * from './cluster';
+
 export interface SwarmTaskRequest {
   repositoryUrl: string;
   instruction: string;

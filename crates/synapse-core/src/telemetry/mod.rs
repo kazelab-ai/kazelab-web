@@ -1,5 +1,7 @@
 //! High-resolution metrics, cycle latency, and token efficiency statistics.
 
+pub mod heartbeat;
+
 use std::sync::atomic::{AtomicU64, AtomicUsize, Ordering};
 use serde::{Deserialize, Serialize};
 

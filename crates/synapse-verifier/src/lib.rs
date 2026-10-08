@@ -8,6 +8,7 @@ pub mod smt;
 pub mod cegis;
 pub mod symbolic_symexec;
 pub mod hoare;
+pub mod mir;
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;

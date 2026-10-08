@@ -1,5 +1,7 @@
 //! Tool Call Sandbox Sandboxing and Command Injection Isolation Policy.
 
+pub mod seccomp;
+
 use std::collections::HashSet;
 
 pub struct ToolSecurityPolicy {

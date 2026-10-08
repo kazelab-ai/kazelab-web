@@ -1,5 +1,7 @@
 //! Standard I/O and HTTP Server-Sent Events transport layers for MCP.
 
+pub mod sse;
+
 use async_trait::async_trait;
 use crate::protocol::{JsonRpcRequest, JsonRpcResponse};
 

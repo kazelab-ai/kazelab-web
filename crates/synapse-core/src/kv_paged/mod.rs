@@ -1,4 +1,5 @@
 pub mod eviction;
+pub mod tiering;
 
 use std::collections::HashMap;
 use std::sync::atomic::{AtomicUsize, Ordering};

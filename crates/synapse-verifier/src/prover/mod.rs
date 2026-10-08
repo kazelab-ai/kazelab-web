@@ -1,5 +1,7 @@
 //! RAII Memory Invariant and Lifetime Verifier.
 
+pub mod lean4;
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
