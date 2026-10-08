@@ -1,6 +1,8 @@
 //! Hindley-Milner Type Inference System (Algorithm W) with Principal Type Derivation.
 //! Implements monomorphic instantiation, polymorphic generalization, and substitution unification.
 
+pub mod elaborator;
+
 use std::collections::{HashMap, HashSet};
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]

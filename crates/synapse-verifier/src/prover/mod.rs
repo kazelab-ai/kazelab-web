@@ -1,6 +1,7 @@
 //! RAII Memory Invariant and Lifetime Verifier.
 
 pub mod lean4;
+pub mod deadlock;
 
 use serde::{Deserialize, Serialize};
 

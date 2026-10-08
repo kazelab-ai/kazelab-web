@@ -1,6 +1,7 @@
 pub mod behaviors;
 pub mod supervision;
 pub mod cluster;
+pub mod crdt;
 
 use std::sync::Arc;
 use tokio::sync::{mpsc, RwLock};

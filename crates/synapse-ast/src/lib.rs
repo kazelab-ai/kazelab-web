@@ -10,6 +10,8 @@ pub mod ssa;
 pub mod types_inference;
 pub mod demangle;
 pub mod arena;
+pub mod semantics;
+pub mod trie;
 
 use std::collections::{HashMap, HashSet};
 use serde::{Deserialize, Serialize};

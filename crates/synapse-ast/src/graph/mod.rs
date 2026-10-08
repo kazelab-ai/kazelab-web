@@ -1,5 +1,7 @@
 //! Bidirectional Call Graph & Module Dependency Mesh.
 
+pub mod bridges;
+
 use std::collections::{HashMap, HashSet};
 use serde::{Deserialize, Serialize};
 

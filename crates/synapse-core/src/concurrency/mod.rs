@@ -1,6 +1,7 @@
 //! Asynchronous Thread Pool and Worker Stealing Task Queue.
 
 pub mod backpressure;
+pub mod circuit_breaker;
 
 use std::sync::atomic::{AtomicBool, AtomicUsize, Ordering};
 use std::sync::Arc;

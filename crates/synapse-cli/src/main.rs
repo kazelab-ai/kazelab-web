@@ -14,6 +14,9 @@ use tracing::{info, Level};
 use tracing_subscriber::FmtSubscriber;
 use std::collections::HashMap;
 
+pub mod probe;
+use probe::ToolchainProbe;
+
 #[derive(Parser)]
 #[command(name = "synapse")]
 #[command(author = "Tú (KazeLAB) <founder@kazelab.xyz>")]
@@ -42,6 +45,8 @@ enum Commands {
         #[arg(short, long)]
         file: String,
     },
+    /// Inspect host toolchain environments (Rustc, Clang, Go)
+    Toolchain,
     /// Run Hindley-Milner type inference proof over a synthesized term
     TypeInfer {
         #[arg(short, long, default_value = "identity")]
@@ -113,6 +118,15 @@ async fn main() -> anyhow::Result<()> {
             info!("Verification Passed: {}", report.passed);
             info!("Memory Leaks: {}", report.memory_leak_detected);
             info!("Tests Run: {}", report.test_count);
+        }
+        Commands::Toolchain => {
+            info!("Probing host compilation toolchains and optimization capabilities...");
+            let profiles = ToolchainProbe::probe_host_environment();
+            for (key, prof) in profiles {
+                info!("Toolchain [{}]: {} (target: {})", key, prof.compiler_name, prof.target_triple);
+                info!("  Recommended Flags: {:?}", prof.optimization_flags);
+                info!("  LTO Enabled: {} | Sanitizers: {}", prof.enables_lto, prof.enables_sanitizers);
+            }
         }
         Commands::TypeInfer { term } => {
             info!("Inferring principal type scheme for term: {}", term);

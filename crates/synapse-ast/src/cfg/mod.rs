@@ -2,6 +2,7 @@ pub mod dfa;
 pub mod dominator;
 pub mod loop_analyzer;
 pub mod tarjan;
+pub mod condensation;
 
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
