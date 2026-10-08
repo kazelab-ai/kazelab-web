@@ -5,6 +5,7 @@ pub mod repair;
 pub mod symbolic;
 pub mod cve;
 pub mod smt;
+pub mod cegis;
 
 use serde::{Deserialize, Serialize};
 use thiserror::Error;

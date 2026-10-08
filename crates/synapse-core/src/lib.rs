@@ -11,6 +11,7 @@ pub mod cache;
 pub mod concurrency;
 pub mod router;
 pub mod shm;
+pub mod raft;
 
 use std::sync::Arc;
 use tokio::sync::{mpsc, Mutex, RwLock};
