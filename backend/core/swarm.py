@@ -18,7 +18,7 @@ class AgentRole(str, Enum):
     COGNITIVE_ARCHITECT = "Cognitive Architect"
     SYSTEMS_CODER = "Systems Coder"
     VERIFICATION_ENGINE = "Verification Engine"
-    SECURITY_AUDITOR = "Security & Evasion Auditor"
+    SECURITY_AUDITOR = "Security & Memory Safety Auditor"
     MCP_ORCHESTRATOR = "MCP Toolchain Orchestrator"
 
 class StepStatus(str, Enum):
@@ -91,7 +91,7 @@ class SwarmEngine:
         step2 = ExecutionStep(
             step_number=2,
             agent_role=AgentRole.SYSTEMS_CODER,
-            action=f"Synthesized production implementation in {req.target_language} satisfying physical machine invariants.",
+            action=f"Synthesized production implementation in {req.target_language} enforcing strict type safety and RAII.",
             tool_invoked="claude-3-5-sonnet::code_synthesis",
             status=StepStatus.SUCCESS,
             duration_ms=round((time.perf_counter() - t2) * 1000, 2),
@@ -121,7 +121,7 @@ class SwarmEngine:
         step4 = ExecutionStep(
             step_number=4,
             agent_role=AgentRole.SECURITY_AUDITOR,
-            action="Audited memory invariants, buffer lifetimes, and indirect syscall telemetry.",
+            action="Audited memory safety bounds, buffer lifetimes, and dependency vulnerability hygiene.",
             tool_invoked="mcp-security-auditor::scan_memory_safety",
             status=StepStatus.SUCCESS,
             duration_ms=round((time.perf_counter() - t4) * 1000, 2),

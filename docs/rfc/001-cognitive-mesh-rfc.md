@@ -33,5 +33,5 @@ Codebase Repository -> Tree-sitter Ingestion -> Symbol Graph DAG -> Anthropic Pr
 - Compilers (`cargo check`, `clang-format`, `pytest`) run natively.
 - Any compiler diagnostic or linker error triggers immediate automated reflection with zero human intervention.
 
-### Stage 4: Security & Symbolic Evasion Audit
+### Stage 4: Security & Memory Safety Audit
 - Verification of bounds checking, memory leak prevention, and CVE hygiene against the OSV advisory database.

@@ -14,7 +14,7 @@
 
 ## 🌟 Executive Summary
 
-**KazeLab AI** is an applied artificial intelligence research and deep systems engineering startup based in Vietnam with a global mission. We engineer sovereign cognitive architectures designed to automate enterprise software engineering workflows with **zero silent hallucination**.
+**KazeLab AI** is an applied artificial intelligence research and deep systems engineering startup based in Vietnam with a global mission. We build deterministic multi-agent architectures designed to automate enterprise software engineering workflows with compiler-verified correctness.
 
 By pairing Anthropic's flagship **Claude 3.5 Sonnet** models with the open **Model Context Protocol (MCP)**, SynapseFlow enables deterministic, self-healing code synthesis, automated bug remediation, and repository-wide refactoring from physical machine first-principles.
 
@@ -36,7 +36,7 @@ graph TD
         Planner --> Architect[Stage 1: Cognitive Architect]
         Planner --> Coder[Stage 2: Systems Coder]
         Planner --> Verifier[Stage 3: Verification Engine]
-        Planner --> Security[Stage 4: Security & Evasion Auditor]
+        Planner --> Security[Stage 4: Security & Memory Safety Auditor]
     end
 
     subgraph MCP Toolchain Hub v1.1
@@ -123,31 +123,30 @@ cd backend
 python -m pytest test_api.py -v
 ```
 
-### 3. Hướng Dẫn Chuyển Đổi Bản Demo & Bản Chính Thức (Dual-Mode Guide)
+### 3. Dual-Mode Evaluation Guide (Client Simulation vs Live Engine)
 
-Giao diện web console hỗ trợ chuyển đổi linh hoạt 1-click giữa hai chế độ vận hành:
+The web console supports instant 1-click toggling between two execution environments:
 
-#### 🧪 Chế độ 1: Bản Demo (Client-Side Simulation - Offline)
-* **Mục đích**: Trình chiếu nhanh, review giao diện, hosting tĩnh trên GitHub Pages/Vercel hoặc mở trực tiếp file `index.html` trong trình duyệt mà không cần cài đặt Python/Rust.
-* **Cách kích hoạt**: 
-  1. Trên giao diện tại mục **Test the SynapseFlow Dispatch Engine**, bấm chọn tab **[🧪 Bản Demo (Simulation)]**.
-  2. Bấm **Execute Multi-Agent Swarm** để xem chu trình nhận thức 4 giai đoạn mô phỏng với đầy đủ hiệu ứng AST indexing, prompt cache và mã nguồn Rust được tạo ra.
+#### 🧪 Mode 1: Client Simulation (Offline Interactive Demo)
+* **Purpose**: Fast evaluation, design inspection, static edge hosting on Vercel/GitHub Pages, or opening `index.html` directly in the browser with zero dependencies.
+* **How to evaluate**:
+  1. Under **Test the SynapseFlow Dispatch Engine**, select the **[🧪 Client Simulation]** tab.
+  2. Click **Execute Multi-Agent Swarm** to watch the simulated 4-stage cognitive dispatch loop with real-time telemetry, AST indexing, and generated patches.
 
-#### ⚡ Chế độ 2: Bản Chính Thức (Production Live Engine - FastAPI & Rust Core)
-* **Mục đích**: Vận hành thật sự, kết nối trực tiếp đến backend FastAPI, xử lý API `/api/v1/swarm/dispatch`, ghi nhận lead vào CSDL và streaming telemetry qua WebSocket.
-* **Cách kích hoạt**:
-  1. Khởi động backend FastAPI:
+#### ⚡ Mode 2: Production Live Engine (FastAPI & Rust Core API)
+* **Purpose**: Full end-to-end execution, connecting directly to the live backend cluster to dispatch real tasks (`POST /api/v1/swarm/dispatch`), persist waitlist leads, and stream verifiable telemetry.
+* **How to run**:
+  1. Launch the FastAPI backend:
      ```bash
      cd backend
-     # Sử dụng python trong venv đã cấu hình
-     .\.venv\Scripts\python.exe -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+     python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
      ```
-  2. Mở trình duyệt tại **[http://localhost:8000](http://localhost:8000)** (Backend tự động phục vụ trực tiếp giao diện `index.html` tại root `/`).
-  3. Tại mục console, bấm chọn tab **[⚡ Bản Chính Thức (FastAPI Engine)]**.
-  4. Bấm **"Kiểm tra API"** để xác nhận kết nối xanh `✓ Backend Online`.
-  5. Bấm **Execute Live Swarm Dispatch** để gửi payload thực tế, nhận execution steps thực và patch zero-defect từ engine.
+  2. Open your browser at **[http://localhost:8000](http://localhost:8000)** (the backend automatically serves `index.html` at `/`).
+  3. Under the console, select the **[⚡ Production Live Engine]** tab.
+  4. Click **"Ping Engine"** to verify connection (`✓ Backend Online`).
+  5. Click **Execute Multi-Agent Swarm** to dispatch real payloads and receive verified production patches.
 
-### 4. Triển Khai Toàn Diện Với Docker Compose
+### 4. Containerized Deployment (Docker Compose)
 ```bash
 docker compose up -d
 # Frontend Nginx: http://localhost (Port 80)
